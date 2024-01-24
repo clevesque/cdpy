@@ -73,7 +73,7 @@ class CdpyDe(CdpSdkBase):
             clusterId=cluster_id,
         )
 
-    def list_services(self, remove_deleted=False):
+    def list_services(self, env=None, remove_deleted=False):
         services = self.sdk.call(
             svc='de', func='list_services', ret_field='services', squelch=[
                 Squelch(value='NOT_FOUND', default=list()),
@@ -91,6 +91,7 @@ class CdpyDe(CdpSdkBase):
             enable_workload_analytics=False, root_volume_size=None, 
             skip_validation=False, tags=None, use_ssd=False,
             loadbalancer_allowlist=None, whitelist_ips=None, subnets=None,
+            network_outbound_type=None,
             cpu_requests=None, memory_requests=None, gpu_requests=None, 
             resource_pool=None, nfs_storage_class=None ):
         return self.sdk.call(
@@ -115,8 +116,9 @@ class CdpyDe(CdpSdkBase):
             tags=tags,
             useSsd=use_ssd,
             whitelistIps=whitelist_ips,
-            loadbalancerAllowlist=loadbalancer_allowlist
+            loadbalancerAllowlist=loadbalancer_allowlist,
             subnets=subnets,
+            networkOutboundType=network_outbound_type,
             cpuRequests=cpu_requests,
             memoryRequests=memory_requests,
             gpuRequests=gpu_requests,
